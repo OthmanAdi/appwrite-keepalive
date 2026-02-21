@@ -31,16 +31,9 @@ In your [Appwrite Console](https://cloud.appwrite.io/):
 1. Go to your project → **Settings** → **API Keys**
 2. Click **Create API Key**
 3. Name it `keepalive`
-4. Select these scopes:
-   - `databases.read`
-   - `databases.write`
-   - `collections.read`
-   - `collections.write`
-   - `attributes.read`
-   - `attributes.write`
-   - `documents.read`
-   - `documents.write`
-5. Copy the API key
+4. Under **Scopes**, expand **Databases** and check **all database scopes** (or just enable the entire Databases category)
+5. Click **Create**
+6. Copy the API key (you won't see it again)
 
 ### 3. Add GitHub Secrets
 
@@ -51,9 +44,16 @@ In your forked repository:
 
 | Secret | Value |
 |--------|-------|
-| `APPWRITE_ENDPOINT` | `https://cloud.appwrite.io/v1` |
+| `APPWRITE_ENDPOINT` | Your API endpoint (see below) |
 | `APPWRITE_PROJECT_ID` | Your project ID |
-| `APPWRITE_API_KEY` | The API key you just created |
+| `APPWRITE_API_KEY` | The API key you created |
+
+**Finding your endpoint:** Your endpoint depends on your region:
+- `https://cloud.appwrite.io/v1` (US)
+- `https://fra.cloud.appwrite.io/v1` (Frankfurt, Germany)
+- `https://nyc.cloud.appwrite.io/v1` (New York)
+
+Check your Appwrite Console → Settings → Overview for the exact endpoint.
 
 ### 4. Enable the Workflow
 
@@ -79,8 +79,8 @@ Done. Your project will receive a heartbeat every 5 days automatically.
 │              appwrite-keepalive                         │
 │                                                         │
 │  1. Connects to your Appwrite project                  │
-│  2. Creates _keepalive database (if needed)            │
-│  3. Creates heartbeats collection (if needed)          │
+│  2. Creates "keepalive" database (if needed)           │
+│  3. Creates "heartbeats" collection (if needed)        │
 │  4. Writes/updates a heartbeat document                │
 └─────────────────────────┬───────────────────────────────┘
                           │
@@ -88,7 +88,7 @@ Done. Your project will receive a heartbeat every 5 days automatically.
 ┌─────────────────────────────────────────────────────────┐
 │              YOUR APPWRITE PROJECT                      │
 │                                                         │
-│  Database: _keepalive                                   │
+│  Database: keepalive                                    │
 │  Collection: heartbeats                                 │
 │  Document: { timestamp: "...", source: "github-actions" }│
 │                                                         │
