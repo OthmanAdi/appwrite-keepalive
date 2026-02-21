@@ -1,0 +1,36 @@
+name: Appwrite Keepalive
+
+on:
+  schedule:
+    # Runs every 5 days at midnight UTC
+    # Appwrite pauses projects after 7 days of inactivity
+    # 5 days gives us a safe buffer
+    - cron: "0 0 */5 * *"
+
+  # Allow manual trigger for testing
+  workflow_dispatch:
+
+jobs:
+  keepalive:
+    name: Send Heartbeat
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Run keepalive
+        run: bun run keepalive
+        env:
+          APPWRITE_ENDPOINT: ${{ secrets.APPWRITE_ENDPOINT }}
+          APPWRITE_PROJECT_ID: ${{ secrets.APPWRITE_PROJECT_ID }}
+          APPWRITE_API_KEY: ${{ secrets.APPWRITE_API_KEY }}
+          APPWRITE_PROJECTS: ${{ secrets.APPWRITE_PROJECTS }}
