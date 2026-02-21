@@ -188,6 +188,23 @@ Disable the GitHub Action:
 
 ---
 
+<details>
+<summary><h2>For AI Coding Agents</h2></summary>
+
+This repo includes an [Agent Skill](https://agentskills.io/) that lets coding agents (Claude Code, OpenCode, Antigravity, OpenClaw, VS Code Copilot, Cursor, and others) automatically detect Appwrite projects and offer to set up keepalive.
+
+The skill is auto-discovered when you clone this repo into your workspace. No manual configuration needed—just start a conversation with your coding agent.
+
+**Supported platforms:**
+- `.claude/skills/` — Claude Code
+- `.agents/skills/` — OpenCode
+- `.agent/skills/` — Google Antigravity
+- `skills/` — OpenClaw
+
+</details>
+
+---
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
