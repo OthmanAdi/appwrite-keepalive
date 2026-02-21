@@ -3,8 +3,6 @@
 Keep your Appwrite free-tier projects alive. Automated. Zero infrastructure.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![GitHub Stars](https://img.shields.io/github/stars/OthmanAdi/appwrite-keepalive?style=social)](https://github.com/OthmanAdi/appwrite-keepalive)
-
 ---
 
 ## Why This Exists
@@ -71,29 +69,29 @@ Done. Your project will receive a heartbeat every 5 days automatically.
 ```
 ┌─────────────────────────────────────────────────────────┐
 │              GITHUB ACTIONS                             │
-│              Runs every 5 days (cron: 0 0 */5 * *)     │
+│              Runs every 5 days (cron: 0 0 */5 * *)      │
 └─────────────────────────┬───────────────────────────────┘
                           │
                           ▼
 ┌─────────────────────────────────────────────────────────┐
 │              appwrite-keepalive                         │
 │                                                         │
-│  1. Connects to your Appwrite project                  │
-│  2. Creates "keepalive" database (if needed)           │
-│  3. Creates "heartbeats" collection (if needed)        │
-│  4. Writes/updates a heartbeat document                │
+│  1. Connects to your Appwrite project                   │
+│  2. Creates "keepalive" database (if needed)            │
+│  3. Creates "heartbeats" collection (if needed)         │
+│  4. Writes/updates a heartbeat document                 │
 └─────────────────────────┬───────────────────────────────┘
                           │
                           ▼
-┌─────────────────────────────────────────────────────────┐
-│              YOUR APPWRITE PROJECT                      │
-│                                                         │
-│  Database: keepalive                                    │
-│  Collection: heartbeats                                 │
+┌──────────────────────────────────────────────────────────┐
+│              YOUR APPWRITE PROJECT                       │
+│                                                          │
+│  Database: keepalive                                     │
+│  Collection: heartbeats                                  │
 │  Document: { timestamp: "...", source: "github-actions" }│
-│                                                         │
-│  ✅ Activity detected → Project NOT paused             │
-└─────────────────────────────────────────────────────────┘
+│                                                          │
+│  Activity detected → Project NOT paused                  |
+└──────────────────────────────────────────────────────────┘
 ```
 
 The heartbeat is a real database write operation. Appwrite registers this as development activity.
